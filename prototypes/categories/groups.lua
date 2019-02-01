@@ -13,6 +13,13 @@ data:extend(
     },
 
     {
+        type = "item-subgroup",
+        name = "colonial-waste",
+        group = "colonial-charter",
+        order = "g"
+    },
+
+    {
         type = "item-group",
         name = "void",
         order = "aaaaa",

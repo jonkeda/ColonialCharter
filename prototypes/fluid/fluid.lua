@@ -1,5 +1,6 @@
 data:extend({
 
+    -- waste
     {
         type = "fluid",
         name = "waste",

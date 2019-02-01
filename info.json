@@ -6,6 +6,6 @@
     "contact": "",
     "homepage": "",
     "factorio_version": "0.16",
-    "dependencies": ["base >= 0.16","ColonialCharter >= 0.1", "? FoodIndustry >= 0.1"],
+    "dependencies": ["base >= 0.16","ColonialCharter >= 0.1", "FoodIndustry >= 0.1"],
     "description": "It's a mix of ColonialCharter and FoodIndustry. So you'll have colonists to feed and let them stay alive. Luckily they also work for you."
 }

@@ -1,4 +1,21 @@
+data:extend(
+    {
+        {
+            type = "item",
+            name = "fishing-inserter",
+            icon = "__ColonialIndustry__/graphics/icons/fishing-inserter.png",
+            icon_size = 32,
+            flags = {"goes-to-quickbar"},
+            subgroup = "food-machines",
+            order = "w-a-i",
+            place_result = "fishing-inserter",
+            stack_size = 50
+        }
+    }
+)
+
 data:extend({
+    -- training
     {
         type = "item",
         name = "colonial-training-center",
@@ -9,6 +26,19 @@ data:extend({
         order = "b[colonial-training-center]",
         place_result = "colonial-training-center",
         stack_size = 20
+    },
+
+    -- waste
+    {
+        type = "item",
+        name = "latrine",
+        icon = "__base__/graphics/icons/storage-tank.png",
+        icon_size = 32,
+        flags = {"goes-to-quickbar"},
+        subgroup = "colonial-buildings",
+        order = "b[fluid]-a[latrine]",
+        place_result = "latrine",
+        stack_size = 50
     },
 
     {
@@ -23,6 +53,18 @@ data:extend({
         stack_size = 20
     },
 
+    -- food
+    {
+        type = "item",
+        name = "chop-house",
+        icon = "__base__/graphics/icons/assembling-machine-1.png",
+        icon_size = 32,
+        flags = {"goes-to-quickbar"},
+        subgroup = "colonial-buildings",
+        order = "b[chop-house]",
+        place_result = "chop-house",
+        stack_size = 50
+    },
     {
         type = "item",
         name = "cantine",
@@ -34,7 +76,19 @@ data:extend({
         place_result = "cantine",
         stack_size = 50
     },
+    {
+        type = "item",
+        name = "restaurant",
+        icon = "__base__/graphics/icons/assembling-machine-3.png",
+        icon_size = 32,
+        flags = {"goes-to-quickbar"},
+        subgroup = "colonial-buildings",
+        order = "b[restaurant]",
+        place_result = "restaurant",
+        stack_size = 50
+    },
 
+    -- void
     {
         type = "item",
         name = "void",
@@ -47,8 +101,8 @@ data:extend({
     },
 
 
-    -- Workers
-  -- https://www.iconexperience.com/o_collection/icons/?icon=scientist&color_style=orange_dark_grey
+    -- Jobs
+    -- https://www.iconexperience.com/o_collection/icons/?icon=scientist&color_style=orange_dark_grey
       -- manager
       {
         type = "module",

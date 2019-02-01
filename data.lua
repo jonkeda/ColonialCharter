@@ -1,3 +1,5 @@
+require("prototypes.scripts.util")
+
 require("prototypes.entity.entities")
 require("prototypes.item.items")
 require("prototypes.resource.resources")
@@ -9,5 +11,8 @@ require("prototypes.categories.recipe-category")
 
 require("prototypes.recipe.fluid-recipe")
 require("prototypes.fluid.fluid")
+
+require("prototypes.scripts.fishing-inserter")
+
 
 require("data_raw_edits")
