@@ -1,19 +1,3 @@
-data:extend(
-  {
-    {
-      type = "recipe",
-      name = "fishing-inserter",
-      enabled = true,
-      ingredients =
-      {
-        {"iron-gear-wheel", 1},
-        {"iron-plate", 1},
-        {"inserter", 1}
-      },
-      result = "fishing-inserter"
-    },
-  })
-
 data:extend({
     {
         type = "recipe",

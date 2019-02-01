@@ -1,19 +1,3 @@
-data:extend(
-    {
-        {
-            type = "item",
-            name = "fishing-inserter",
-            icon = "__ColonialIndustry__/graphics/icons/fishing-inserter.png",
-            icon_size = 32,
-            flags = {"goes-to-quickbar"},
-            subgroup = "food-machines",
-            order = "w-a-i",
-            place_result = "fishing-inserter",
-            stack_size = 50
-        }
-    }
-)
-
 data:extend({
     -- training
     {

@@ -12,7 +12,4 @@ require("prototypes.categories.recipe-category")
 require("prototypes.recipe.fluid-recipe")
 require("prototypes.fluid.fluid")
 
-require("prototypes.scripts.fishing-inserter")
-
-
 require("data_raw_edits")
