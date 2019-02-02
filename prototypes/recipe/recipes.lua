@@ -1,16 +1,43 @@
 data:extend({
-    {
+  -- training
+
+  {
         type = "recipe",
-        name = "colonial-training-center",
+        name = "colonial-training-1",
         energy_required = 15,
         ingredients =
         {
             {"iron-plate", 1},
         },
-        result = "colonial-training-center",
+        result = "colonial-training-1",
         enabled = true,
     },
 
+  {
+    type = "recipe",
+    name = "colonial-training-2",
+    energy_required = 15,
+    ingredients =
+    {
+      {"iron-plate", 1},
+    },
+    result = "colonial-training-2",
+    enabled = false,
+  },
+
+  {
+    type = "recipe",
+    name = "colonial-training-3",
+    energy_required = 15,
+    ingredients =
+    {
+      {"iron-plate", 1},
+    },
+    result = "colonial-training-3",
+    enabled = false,
+  },
+
+  -- waste
   {
     type = "recipe",
     name = "Latrine",
@@ -33,41 +60,42 @@ data:extend({
       {"iron-plate", 1},
     },
     result = "waste-disposal",
-    enabled = true,
+    enabled = false,
   },
 
+  -- food
   {
     type = "recipe",
-    name = "chop-house",
+    name = "colonial-building-food-1",
     ingredients =
     {
         {"wood", 1},
         {"iron-plate", 1},
     },
-    result = "chop-house",
+    result = "colonial-building-food-1",
     enabled = true,
   },
   {
     type = "recipe",
-    name = "cantine",
+    name = "colonial-building-food-2",
     ingredients =
     {
       {"wood", 1},
       {"iron-plate", 1},
     },
-    result = "cantine",
-    enabled = true,
+    result = "colonial-building-food-2",
+    enabled = false,
   },
   {
     type = "recipe",
-    name = "restaurant",
+    name = "colonial-building-food-3",
     ingredients =
     {
       {"wood", 1},
       {"iron-plate", 1},
     },
-    result = "restaurant",
-    enabled = true,
+    result = "colonial-building-food-3",
+    enabled = false,
   },
 
   -- Waste
@@ -97,7 +125,7 @@ data:extend({
     name = "sulfur-from-waste",
     category = "chemistry",
     energy_required = 1,
-    enabled = true,
+    enabled = false,
     subgroup="colonial-waste",
     ingredients =
     {
@@ -167,70 +195,153 @@ data:extend({
     }
   },
 
-  -- Food
+  -- Jobs - basic
   {
     type = "recipe",
-    name = "wood-waste",
-    category = "waste-fluid",
-    energy_required = 1,
+    category="colonist-job-basic",
+    name = "colonist-speed-module-1",
+    energy_required = 10,
     ingredients =
     {
-      {"raw-wood", 1},
+      {"colonist", 4},
     },
-    results=
+    result = "colonist-speed-module-1",
+    enabled = true,
+  },
+  {
+    type = "recipe",
+    category="colonist-job-basic",
+    name = "colonist-effectivity-module-1",
+    energy_required = 10,
+    ingredients =
     {
-      {type="fluid", name="waste", amount=1}
+      {"colonist", 4},
     },
+    result = "colonist-effectivity-module-1",
+    enabled = true,
+  },
+  {
+    type = "recipe",
+    category="colonist-job-basic",
+    name = "colonist-productivity-module-1",
+    energy_required = 10,
+    ingredients =
+    {
+      {"colonist", 4},
+    },
+    result = "colonist-productivity-module-1",
+    enabled = true,
+  },
+  {
+    type = "recipe",
+    category="colonist-job-basic",
+    name = "colonist-pollution-module-1",
+    energy_required = 10,
+    ingredients =
+    {
+      {"colonist", 4},
+    },
+    result = "colonist-pollution-module-1",
     enabled = true,
   },
 
-  -- Jobs
+-- Jobs - advanced
   {
     type = "recipe",
-    category="colonist",
-    name = "colonist-speed-module",
+    category="colonist-job-advanced",
+    name = "colonist-speed-module-2",
     energy_required = 10,
     ingredients =
     {
-      {"colonist", 4},
+      {"colonist", 8},
     },
-    result = "colonist-speed-module",
-    enabled = true,
+    result = "colonist-speed-module-2",
+    enabled = false,
   },
   {
     type = "recipe",
-    category="colonist",
-    name = "colonist-effectivity-module",
+    category="colonist-job-advanced",
+    name = "colonist-effectivity-module-2",
     energy_required = 10,
     ingredients =
     {
-      {"colonist", 4},
+      {"colonist", 8},
     },
-    result = "colonist-effectivity-module",
-    enabled = true,
+    result = "colonist-effectivity-module-2",
+    enabled = false,
   },
   {
     type = "recipe",
-    category="colonist",
-    name = "colonist-productivity-module",
+    category="colonist-job-advanced",
+    name = "colonist-productivity-module-2",
     energy_required = 10,
     ingredients =
     {
-      {"colonist", 4},
+      {"colonist", 8},
     },
-    result = "colonist-productivity-module",
-    enabled = true,
+    result = "colonist-productivity-module-2",
+    enabled = false,
   },
   {
     type = "recipe",
-    category="colonist",
-    name = "colonist-pollution-module",
+    category="colonist-job-advanced",
+    name = "colonist-pollution-module-2",
     energy_required = 10,
     ingredients =
     {
-      {"colonist", 4},
+      {"colonist", 8},
     },
-    result = "colonist-pollution-module",
-    enabled = true,
+    result = "colonist-pollution-module-2",
+    enabled = false,
+  },
+
+  -- Jobs - expert
+  {
+    type = "recipe",
+    category="colonist-job-expert",
+    name = "colonist-speed-module-3",
+    energy_required = 10,
+    ingredients =
+    {
+      {"colonist", 12},
+    },
+    result = "colonist-speed-module-3",
+    enabled = false,
+  },
+  {
+    type = "recipe",
+    category="colonist-job-expert",
+    name = "colonist-effectivity-module-3",
+    energy_required = 10,
+    ingredients =
+    {
+      {"colonist", 12},
+    },
+    result = "colonist-effectivity-module-3",
+    enabled = false,
+  },
+  {
+    type = "recipe",
+    category="colonist-job-expert",
+    name = "colonist-productivity-module-3",
+    energy_required = 10,
+    ingredients =
+    {
+      {"colonist", 12},
+    },
+    result = "colonist-productivity-module-3",
+    enabled = false,
+  },
+  {
+    type = "recipe",
+    category="colonist-job-expert",
+    name = "colonist-pollution-module-3",
+    energy_required = 10,
+    ingredients =
+    {
+      {"colonist", 12},
+    },
+    result = "colonist-pollution-module-3",
+    enabled = false,
   }
 })

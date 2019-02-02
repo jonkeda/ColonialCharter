@@ -34,4 +34,25 @@ data:extend(
         order = "a-a",
     },
 
+    {
+        type = "item-subgroup",
+        name = "colonial-buildings-waste",
+        group = "colonial-charter",
+        order = "d-a"
+    },
+
+    {
+        type = "item-subgroup",
+        name = "colonial-buildings-food",
+        group = "colonial-charter",
+        order = "d-b"
+    },
+
+    {
+        type = "item-subgroup",
+        name = "colonial-buildings-training",
+        group = "colonial-charter",
+        order = "d-c"
+    },
+
 })

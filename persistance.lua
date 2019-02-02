@@ -6,6 +6,8 @@
 	if not coli.on_remove then coli.on_remove = {} end
 	if not coli.on_adjust then coli.on_adjust = {} end
 	if not coli.on_pick_up then coli.on_pick_up = {} end
+	if not coli.on_entitydied then coli.on_entitydied = {} end
+
 
 
 	if global ~= nil then
@@ -13,5 +15,6 @@
 		if not global.coli.fishing_inserters then global.coli.fishing_inserters = {} end
 		if not global.players then global.players = {} end
 		if not global.coli.players then global.coli.players = {} end
+		if not global.coli.days then global.coli.days = 0 end
 	end
 end
