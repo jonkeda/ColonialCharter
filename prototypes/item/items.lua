@@ -1,4 +1,52 @@
 data:extend({
+
+    -- colonists and their activities
+    {
+        type = "item",
+        name = "colonist",
+        icon = "__ColonialIndustry__/graphics/icons/colonist.png",
+        icon_size = 32,
+        flags = {"goes-to-quickbar"},
+        order = "c[colonist]",
+        subgroup = "colonial-colonist",
+        stack_size = 12
+    },
+
+    -- housing
+    {
+        type = "item",
+        name = "colonial-housing-1",
+        icon = "__ColonialIndustry__/graphics/icons/colonial-housing.png",
+        icon_size = 32,
+        flags = {"goes-to-quickbar"},
+        subgroup = "colonial-buildings-housing",
+        order = "a[colonial-housing-1]",
+        place_result = "colonial-housing-1",
+        stack_size = 20
+    },
+    {
+        type = "item",
+        name = "colonial-housing-2",
+        icon = "__ColonialIndustry__/graphics/icons/colonial-housing.png",
+        icon_size = 32,
+        flags = {"goes-to-quickbar"},
+        subgroup = "colonial-buildings-housing",
+        order = "a[colonial-housing-2]",
+        place_result = "colonial-housing-2",
+        stack_size = 20
+    },
+    {
+        type = "item",
+        name = "colonial-housing-3",
+        icon = "__ColonialIndustry__/graphics/icons/colonial-housing.png",
+        icon_size = 32,
+        flags = {"goes-to-quickbar"},
+        subgroup = "colonial-buildings-housing",
+        order = "a[colonial-housing-3]",
+        place_result = "colonial-housing-3",
+        stack_size = 20
+    },
+
     -- training
 
     {
@@ -51,13 +99,26 @@ data:extend({
     {
         type = "item",
         name = "waste-disposal",
-        icon = "__base__/graphics/icons/stone-furnace.png",
+        icon = "__ColonialIndustry__/graphics/icons/waste-disposal.png",
         icon_size = 32,
         flags = {"goes-to-quickbar"},
         subgroup = "colonial-buildings-waste",
         order = "c[waste-disposal]",
         place_result = "waste-disposal",
-        stack_size = 20
+        stack_size = 50
+    },
+
+    {
+        type = "item",
+        name = "compostwaste",
+        icon = "__FoodIndustry__/graphics/icons/items/compost.png",
+        icon_size = 32,
+        flags = {"goes-to-main-inventory"},
+        fuel_category = "humus", -- changed by Oceanel
+        fuel_value = "100KJ",
+        subgroup = "food-items",
+        order = "w-b-d",
+        stack_size = 200
     },
 
     -- food
@@ -102,8 +163,21 @@ data:extend({
         icon = "__ColonialIndustry__/graphics/icons/fluid/oxygen.png",
         icon_size = 32,
         flags = {"goes-to-main-inventory", "hidden"},
-        subgroup = "void",
+        subgroup="colonial-waste",
+        --subgroup = "void",
         order = "void",
+        stack_size = 100
+    },
+
+    {
+        type = "item",
+        name = "heat",
+        icon = "__ColonialIndustry__/graphics/icons/fluid/oxygen.png",
+        icon_size = 32,
+        flags = {"goes-to-main-inventory", "hidden"},
+        subgroup="colonial-waste",
+        --subgroup = "void",
+        order = "heat",
         stack_size = 100
     },
 

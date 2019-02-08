@@ -5,10 +5,11 @@
 require("persistance")
 require("prototypes.scripts.totals")
 
-local debug = true
-local debugset = false;
+local debug = false
+local debugset = false
 
 function OnInit()
+
     setupColi()
     initTotals()
     if game ~= nil then
@@ -20,16 +21,23 @@ function OnInit()
 end
 
 function OnLoad()
-    OnInit()
+    --OnInit()
 end
 
 function OnPlayerCreated(event)
     local index = event.player_index
     CreateGui(index)
 
+    local player = game.players[index]
+    player.insert({name="burner-mining-drill", count=2})
+    player.insert({name="colonial-housing-1", count=2})
+    player.insert({name="colonial-building-food-1", count=1})
+    player.insert({name="burner-food-picker", count=1})
+    player.insert({name="apple", count=10})
 end
 
 function OnTick(event)
+    setupColi()
 
     if debug then
         if not debugset then
@@ -81,21 +89,15 @@ end
 
 
 local local_on_added = function(event)
-    local entity = event.created_entity
-    if entity ~= nil then
-        for k=1, #coli.on_added do
-            local v = coli.on_added[k]
-            v(entity)
-        end
+    for k=1, #coli.on_added do
+        local v = coli.on_added[k]
+        v(event)
     end
 end
 local local_on_removed = function(event)
-    local entity = event.entity
-    if entity ~= nil then
-        for k=1, #coli.on_remove do
-            local v = coli.on_remove[k]
-            v(entity)
-        end
+    for k=1, #coli.on_remove do
+        local v = coli.on_remove[k]
+        v(event)
     end
 end
 

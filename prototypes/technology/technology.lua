@@ -1,5 +1,30 @@
+require("prototypes.foods")
 -- jobs
 data:extend({
+    {
+        type = "technology",
+        name = "colonist-job-a",
+        icon = "__ColonialIndustry__/graphics/technology/colonial-charter.png",
+        icon_size = 128,
+        effects =
+        {
+            {type = "unlock-recipe", recipe = "colonial-training-1"},
+            {type = "unlock-recipe", recipe = "colonist-speed-module-1"},
+            {type = "unlock-recipe", recipe = "colonist-effectivity-module-1"},
+            {type = "unlock-recipe", recipe = "colonist-productivity-module-1"},
+            {type = "unlock-recipe", recipe = "colonist-pollution-module-1"},
+        },
+        unit =
+        {
+            time = 60,
+            count = 150,
+            ingredients =
+            {
+                {"science-pack-1", 1}
+            },
+        },
+        order = "w",
+    },
     {
         type = "technology",
         name = "colonist-job-b",
@@ -114,5 +139,13 @@ data:extend({
 
     -- waste
 
-
 })
+
+--for i,f in pairs(foods) do
+--    if f[6] == "compost" then
+--    else
+--        local tech = f[7]
+--        table.insert(data.raw["technology"][tech]["effects"], {type = "unlock-recipe", recipe = f[1].."-waste"})
+--    end
+--
+--end

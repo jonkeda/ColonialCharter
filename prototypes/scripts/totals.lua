@@ -5,6 +5,7 @@ function CreateGui(index)
         return
     end
     table.insert(global.players, player)
+    global.force = player.force
     table.insert(
         global.coli.players,
         {
@@ -112,7 +113,139 @@ function CreateGui(index)
         caption = "0"
     }
 
+    -- workers needed
+    local label1_2 = layout1.add{
+        type = "label",
+        name = "lblJobs",
+        caption = {"property.jobs"}
+    }
+    local label1_2 = layout1.add{
+        type = "label",
+        name = "jobs",
+        caption = "0"
+    }
+
+    -- housing
+    local label1_2 = layout1.add{
+        type = "label",
+        name = "lblhousing",
+        caption = {"property.housing"}
+    }
+    local label1_2 = layout1.add{
+        type = "label",
+        name = "housing",
+        caption = "0"
+    }
+
+    -- Food needed this turn
+    local label1_2 = layout1.add{
+        type = "label",
+        name = "lblFoodNeeded",
+        caption = {"property.foodneeded"}
+    }
+    local label1_2 = layout1.add{
+        type = "label",
+        name = "foodneeded",
+        caption = "0"
+    }
+
+    -- Food needed this turn
+    local label1_2 = layout1.add{
+        type = "label",
+        name = "lblFoodEaten",
+        caption = {"property.foodeaten"}
+    }
+    local label1_2 = layout1.add{
+        type = "label",
+        name = "foodeaten",
+        caption = "0"
+    }
+
+    -- Hunger state
+    local label1_2 = layout1.add{
+        type = "label",
+        name = "lblHungerState",
+        caption = {"property.hungerstate"}
+    }
+    local label1_2 = layout1.add{
+        type = "label",
+        name = "hungerstate",
+        caption = "0"
+    }
+
+
+    -- Cold state
+    local label1_2 = layout1.add{
+        type = "label",
+        name = "lblColdState",
+        caption = {"property.coldstate"}
+    }
+    local label1_2 = layout1.add{
+        type = "label",
+        name = "coldstate",
+        caption = "0"
+    }
 end
+
+local function isWorkerEntity(entity)
+    if entity.type == "lab" or
+
+        entity.type == "assembling-machine" or
+        entity.type == "furnace" or
+        entity.type == "mining-drill" or
+
+        entity.type == "reactor" or
+        entity.type == "roboport" or
+
+        entity.type == "radar" or
+        entity.type == "ammo-turret" or
+        entity.type == "electric-turret" or
+        entity.type == "fluid-turret" or
+
+        entity.type == "locomotive" or
+
+        entity.type == "rocket-silo" then
+        return true
+    else
+        return false
+    end
+end
+
+local function isHousingEntity(entity)
+    if entity.name == "colonial-housing-1" or
+        entity.name == "colonial-housing-2" or
+        entity.name == "colonial-housing-3" then
+        return true
+    else
+        return false
+    end
+end
+local local_totals_added = function(event)
+
+    local entity = event.created_entity
+    if isWorkerEntity(entity) then
+        local e = entity.prototype.max_health
+        global.coli.jobs = global.coli.jobs + e
+    elseif isHousingEntity(entity) then
+        local e = entity.prototype.max_health
+        global.coli.housing = global.coli.housing + e
+    end
+
+end
+
+local local_totals_removed = function(event)
+
+    local entity = event.entity
+    if isWorkerEntity(entity) then
+        local e = entity.prototype.max_health
+        global.coli.jobs = global.coli.jobs - e
+    elseif isHousingEntity(entity) then
+        local e = entity.prototype.max_health
+        global.coli.housing = global.coli.housing - e
+    end
+
+end
+
 
 local local_totals_died = function(event)
     local entity = event.entity
@@ -126,6 +259,7 @@ local local_totals_died = function(event)
         entity.force.entity_build_count_statistics.set_output_count("colonist", buildOutput + colonists)
 
         i = i + 1
+
         inventory = entity.get_inventory(i)
     end
 end
@@ -138,9 +272,46 @@ local function countColonistsjob(force, job)
     )
 end
 
-local
+local function calculateTotalWaste()
 
-local_totals_tick = function()
+    return global.force.fluid_production_statistics.get_input_count("waste") +
+            global.force.item_production_statistics.get_input_count("compostwaste")
+
+end
+
+local MinHungerState = 1
+local MaxHungerState = 5
+local HungerTime = 3600 / 4
+
+local function calculateHunger()
+
+    local totalWaste = calculateTotalWaste()
+    local totalFoodNeeded = global.coli.housing
+
+    global.coli.foodneeded = totalFoodNeeded
+
+    global.coli.totalWasteLastPeriod = totalWaste
+    global.coli.foodEaten = global.coli.totalWasteLastPeriod - totalWaste
+
+    if global.coli.foodEaten < global.coli.foodneeded then
+
+        -- todo: Eat Food rations
+
+        -- hunger
+        if global.coli.hungerstate > MinHungerState then
+            global.coli.hungerstate = global.coli.hungerstate -1
+        end
+
+    else
+        -- enough food
+        if global.coli.hungerstate < MaxHungerState then
+            global.coli.hungerstate = global.coli.hungerstate + 1
+        end
+    end
+
+end
+
+local local_totals_tick = function()
 
     local daytime = game.surfaces['nauvis'].daytime
 
@@ -153,10 +324,13 @@ local_totals_tick = function()
         return
     end
 
+    if game.tick % HungerTime == 0 then
+        calculateHunger()
+    end
+
     for i,p in pairs(global.players) do
         if p.character then
             p.gui.left.coli.layout1.days.caption = tostring(global.coli.days)
-
 
             local buildInput = p.force.entity_build_count_statistics.get_input_count("colonist")
             local productionInput = p.force.item_production_statistics.get_input_count("colonist")
@@ -168,8 +342,7 @@ local_totals_tick = function()
 
             p.gui.left.coli.layout1.colonistsCount.caption = tostring(totalInput - totalOutput)
 
-            local wasteInput = p.force.fluid_production_statistics .get_input_count("waste")
-            --local wasteOutput = p.force.fluid_production_statistics .get_output_count("waste")
+            local wasteInput = calculateTotalWaste()
 
             p.gui.left.coli.layout1.waste.caption = tostring(wasteInput)
 
@@ -178,20 +351,24 @@ local_totals_tick = function()
             p.gui.left.coli.layout1.workers.caption = countColonistsjob(p.force, "colonist-productivity-module-")
             p.gui.left.coli.layout1.environmentalists.caption = countColonistsjob(p.force, "colonist-pollution-module-")
 
+            p.gui.left.coli.layout1.jobs.caption = tostring(global.coli.jobs)
+            p.gui.left.coli.layout1.housing.caption = tostring(global.coli.housing)
+
+            -- food needed
+            p.gui.left.coli.layout1.foodneeded.caption = tostring(global.coli.foodneeded)
+            p.gui.left.coli.layout1.foodeaten.caption = tostring(global.coli.foodeaten)
+            p.gui.left.coli.layout1.hungerstate.caption = tostring(global.coli.hungerstate)
         end
     end
-
-
 end
 
-
-
-
+local isInitTotals = false
 function initTotals()
-
-    if coli.ticks ~= nil then
+    if coli.ticks ~= nil and not isInitTotals then
+        isInitTotals = true
         table.insert(coli.ticks, local_totals_tick)
         table.insert(coli.on_entitydied, local_totals_died)
-        --table.insert(foodi.on_remove,local_fishing_inserter_removed)
+        table.insert(coli.on_added, local_totals_added)
+        table.insert(coli.on_remove, local_totals_removed)
     end
 end

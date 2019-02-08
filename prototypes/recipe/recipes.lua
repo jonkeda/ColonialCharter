@@ -1,4 +1,44 @@
 data:extend({
+
+  -- housing
+
+  {
+    type = "recipe",
+    name = "colonial-housing-1",
+    energy_required = 1,
+    ingredients =
+    {
+      {"iron-plate", 2},
+      {"colonist", 4},
+    },
+    result = "colonial-housing-1",
+    enabled = true,
+  },
+  {
+    type = "recipe",
+    name = "colonial-housing-2",
+    energy_required = 1,
+    ingredients =
+    {
+      {"iron-plate", 1},
+      {"colonist", 8},
+    },
+    result = "colonial-housing-2",
+    enabled = false,
+  },
+  {
+    type = "recipe",
+    name = "colonial-housing-3",
+    energy_required = 1,
+    ingredients =
+    {
+      {"iron-plate", 1},
+      {"colonist", 16},
+    },
+    result = "colonial-housing-3",
+    enabled = false,
+  },
+
   -- training
 
   {
@@ -10,7 +50,7 @@ data:extend({
             {"iron-plate", 1},
         },
         result = "colonial-training-1",
-        enabled = true,
+        enabled = false,
     },
 
   {
@@ -42,7 +82,7 @@ data:extend({
     type = "recipe",
     name = "Latrine",
     energy_required = 3,
-    enabled = true,
+    enabled = false,
     ingredients =
     {
       {"raw-wood", 4},
@@ -69,8 +109,8 @@ data:extend({
     name = "colonial-building-food-1",
     ingredients =
     {
-        {"wood", 1},
-        {"iron-plate", 1},
+        {"wood", 4},
+        {"iron-plate", 2},
     },
     result = "colonial-building-food-1",
     enabled = true,
@@ -96,6 +136,23 @@ data:extend({
     },
     result = "colonial-building-food-3",
     enabled = false,
+  },
+
+  -- Gasses
+  {
+    type = "recipe",
+    name = "free-air",
+    category = "void-air",
+    subgroup="colonial-waste",
+    energy_required = 100,
+    ingredients =
+    {
+    },
+    results=
+    {
+      { type="item", name="heat", amount=1, probability=0 },
+    },
+    enabled = true,
   },
 
   -- Waste
@@ -143,6 +200,7 @@ data:extend({
     }
   },
 
+
   {
     type = "recipe",
     name = "solid-fuel-from-waste",
@@ -159,7 +217,7 @@ data:extend({
     icon = "__base__/graphics/icons/solid-fuel-from-light-oil.png",
     icon_size = 32,
     subgroup="colonial-waste",
-    enabled = true,
+    enabled = false,
     order = "b[fluid-chemistry]-c[solid-fuel-from-light-oil]",
     crafting_machine_tint =
     {
@@ -185,7 +243,7 @@ data:extend({
     icon = "__FoodIndustry__/graphics/icons/items/fertilizer.png",
     icon_size = 32,
     subgroup="colonial-waste",
-    enabled = true,
+    enabled = false,
     order = "b[fluid-chemistry]-c[solid-fuel-from-light-oil]",
     crafting_machine_tint =
     {
@@ -206,7 +264,7 @@ data:extend({
       {"colonist", 4},
     },
     result = "colonist-speed-module-1",
-    enabled = true,
+    enabled = false,
   },
   {
     type = "recipe",
@@ -218,7 +276,7 @@ data:extend({
       {"colonist", 4},
     },
     result = "colonist-effectivity-module-1",
-    enabled = true,
+    enabled = false,
   },
   {
     type = "recipe",
@@ -230,7 +288,7 @@ data:extend({
       {"colonist", 4},
     },
     result = "colonist-productivity-module-1",
-    enabled = true,
+    enabled = false,
   },
   {
     type = "recipe",
@@ -242,7 +300,7 @@ data:extend({
       {"colonist", 4},
     },
     result = "colonist-pollution-module-1",
-    enabled = true,
+    enabled = false,
   },
 
 -- Jobs - advanced

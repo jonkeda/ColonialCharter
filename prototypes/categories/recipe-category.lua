@@ -40,4 +40,10 @@ data:extend(
         type = "recipe-category",
         name = "void-fluid"
     },
+
+    {
+        type = "recipe-category",
+        name = "void-air"
+    },
+
 })
